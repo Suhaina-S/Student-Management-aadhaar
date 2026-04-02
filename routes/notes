@@ -1,0 +1,48 @@
+const express = require("express");
+const router = express.Router();
+const {
+  createOrUpdateStudent,
+  updateName,
+  updateAddress,
+  updateEducation,
+  updateContact,
+  updatePhoto,
+  getAllStudents,
+  editFullStudent,
+  updateFingerprint,
+  getStudentPhoto,
+  getPhotoByRegNumber,
+  authenticateStudent,
+  getStudentDetails,
+} = require("../controllers/studentController");
+
+// Create or update student by regNumber
+router.post("/", createOrUpdateStudent);
+
+// A
+router.post("/name", updateName);
+router.post("/address", updateAddress);
+router.post("/education", updateEducation);
+router.post("/contact", updateContact);
+router.post("/photo", updatePhoto);
+
+// Edit sections (PATCH)
+router.patch("/name", updateName);
+router.patch("/address", updateAddress);
+router.patch("/education", updateEducation);
+router.patch("/contact", updateContact);
+
+// Full update (PUT)
+router.put("/edit/:regNumber", editFullStudent);
+
+// Fetch all students
+router.get("/all", getAllStudents);
+//router.post("/update-fingerprint", updateFingerprint);
+router.post("/auth/:regNumber", authenticateStudent);
+
+
+router.get("/photo/:regNumber", getPhotoByRegNumber);
+router.get("/student/details/:regNumber", studentController.getStudentDetails);
+
+
+module.exports = router;
